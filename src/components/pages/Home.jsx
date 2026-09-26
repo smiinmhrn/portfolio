@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Hero from "@/components/home/Hero";
 import BrainSection from "@/components/home/BrainSection";
-import InsideTheBrain from "@/components/home/InsideTheBrain";
+import InsideTheBrain from "@/components/insideTheBrain/InsideTheBrain";
 
 export default function Home() {
   const [isTransitioning, setIsTransitioning] = useState(false);

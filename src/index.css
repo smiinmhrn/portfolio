@@ -22,6 +22,54 @@ body {
   font-family: "Kalam", cursive;
 }
 
+.sparkle-text {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.sparkle-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.sparkle {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: white;
+  box-shadow:
+    0 0 4px white,
+    0 0 8px white,
+    0 0 14px #ffd700;
+
+  opacity: 0;
+
+  animation: sparkle-fly 0.8s ease-out var(--delay) forwards;
+}
+
+@keyframes sparkle-fly {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translate(
+      calc(var(--x) * 0.2),
+      calc(var(--y) * 0.2)
+    ) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0);
+  }
+}
+
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: "Geist Variable", sans-serif;
