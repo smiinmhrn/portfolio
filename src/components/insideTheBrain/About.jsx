@@ -35,9 +35,18 @@ export default function About() {
             realize how much there is still to discover — and honestly, I enjoy
             that. I studied Computer Engineering at Yazd University, where I
             earned my Bachelor's degree. When I’m not coding, you’ll probably
-            find me drawing, playing music, or watching a movie.
+            find me drawing, playing music, or watching a movie.{" "}
+            <span
+              className="text-white text-4xl"
+              style={{
+                textShadow: "3px 3px 0px #D06167",
+              }}
+            >
+              But anyways, let me show you my skills.
+            </span>
           </p>
         </div>
+        
       </ScrollReveal>
     </div>
   );
