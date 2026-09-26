@@ -97,41 +97,38 @@ export default function BrainSection({ isVisible, children }) {
   return (
     <section
       onClick={handleClick}
-      className={`fixed inset-0 z-30 overflow-hidden transition-opacity duration-1500 ${
+      className={`fixed inset-0 z-30 overflow-y-auto overflow-x-hidden transition-opacity duration-1500 ${
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
       {/* CONTENT */}
-
-      <div className="absolute inset-0 z-0">{children}</div>
+      <div className="relative z-0 min-h-full">{children}</div>
 
       {/* DARK OVERLAY */}
-
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="fixed inset-0 pointer-events-none z-10"
         style={{
           background: isLampOn
             ? `
-              radial-gradient(
-                circle 300px
-                at ${mousePosition.x - 80}px ${mousePosition.y - 150}px,
-                transparent 0%,
-                transparent 30%,
-                rgba(0,0,0,0.25) 45%,
-                rgba(0,0,0,0.65) 65%,
-                rgba(0,0,0,0.92) 82%,
-                #000 100%
-              )
-            `
+        radial-gradient(
+          circle 500px
+          at ${mousePosition.x - 80}px ${mousePosition.y - 150}px,
+          transparent 0%,
+          transparent 30%,
+          rgba(0,0,0,0.28) 45%,
+          rgba(0,0,0,0.63) 65%,
+          rgba(0,0,0,0.84) 82%,
+          rgba(0,0,0,0.89) 100%
+        )
+      `
             : "#000",
         }}
       />
 
       {/* WARM YELLOW LIGHT */}
-
       {isLampOn && (
         <div
-          className="fixed pointer-events-none"
+          className="fixed pointer-events-none z-20"
           style={{
             left: mousePosition.x - 80,
             top: mousePosition.y - 150,
@@ -139,22 +136,21 @@ export default function BrainSection({ isVisible, children }) {
             height: "600px",
             transform: "translate(-50%, -50%)",
             background: `
-              radial-gradient(
-                circle,
-                rgba(255, 210, 70, 0.25) 0%,
-                rgba(255, 190, 40, 0.18) 25%,
-                rgba(255, 170, 20, 0.09) 50%,
-                rgba(255, 150, 0, 0.035) 70%,
-                transparent 100%
-              )
-            `,
+            radial-gradient(
+              circle,
+              rgba(255, 210, 70, 0.25) 0%,
+              rgba(255, 190, 40, 0.18) 25%,
+              rgba(255, 170, 20, 0.09) 50%,
+              rgba(255, 150, 0, 0.035) 70%,
+              transparent 100%
+            )
+          `,
             filter: "blur(20px)",
           }}
         />
       )}
 
       {/* MOBILE LAMP */}
-
       {isVisible && isTouchDevice && (
         <div
           className="fixed pointer-events-none z-50"
@@ -177,12 +173,11 @@ export default function BrainSection({ isVisible, children }) {
       )}
 
       {/* DESKTOP TEXT */}
-
       {!isLampOn && !isTouchDevice && (
         <div
-          className="fixed pointer-events-none select-none text-white/70 text-sm leading-6"
+          className="fixed z-40 pointer-events-none select-none text-white/70 text-sm leading-6"
           style={{
-            left: mousePosition.x - 120,
+            left: mousePosition.x - 130,
             top: mousePosition.y - 70,
           }}
         >
