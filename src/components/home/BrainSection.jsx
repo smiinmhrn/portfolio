@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import lampCursor from "@/assets/lamp.png";
 
-export default function BrainSection({ isVisible }) {
+export default function BrainSection({ isVisible, children }) {
   const [mousePosition, setMousePosition] = useState({
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
@@ -97,21 +97,13 @@ export default function BrainSection({ isVisible }) {
   return (
     <section
       onClick={handleClick}
-      className={`fixed inset-0 z-30 overflow-hidden transition-opacity duration-1500${
+      className={`fixed inset-0 z-30 overflow-hidden transition-opacity duration-1500 ${
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
       {/* CONTENT */}
 
-      <div className="absolute inset-0 flex items-center justify-center bg-red-600">
-        <div className="text-white text-center">
-          <h1 className="text-5xl font-bold">Your hidden content</h1>
-
-          <p className="mt-4 text-black/70">
-            This becomes visible when the lamp is turned on.
-          </p>
-        </div>
-      </div>
+      <div className="absolute inset-0 z-0">{children}</div>
 
       {/* DARK OVERLAY */}
 

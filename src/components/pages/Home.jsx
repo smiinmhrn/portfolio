@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Hero from "@/components/home/Hero";
 import BrainSection from "@/components/home/BrainSection";
+import InsideTheBrain from "@/components/home/InsideTheBrain";
 
 export default function Home() {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -12,7 +13,7 @@ export default function Home() {
   // Go inside brain
   // ─────────────────────────────────────────
 
-  const goInsideBrain = () => {
+  const goInsideBrain = useCallback(() => {
     if (isTransitioning || isInsideBrain) return;
 
     setIsTransitioning(true);
@@ -21,7 +22,7 @@ export default function Home() {
       setIsInsideBrain(true);
       setIsTransitioning(false);
     }, 1500);
-  };
+  }, [isTransitioning, isInsideBrain]);
 
   // ─────────────────────────────────────────
   // Scroll + Touch
@@ -58,13 +59,15 @@ export default function Home() {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [isTransitioning, isInsideBrain]);
+  }, [goInsideBrain]);
 
   return (
     <main className="bg-white min-h-screen">
       <Hero isTransitioning={isTransitioning} isInsideBrain={isInsideBrain} />
 
-      <BrainSection isVisible={isInsideBrain || isTransitioning} />
+      <BrainSection isVisible={isInsideBrain || isTransitioning}>
+        <InsideTheBrain />
+      </BrainSection>
     </main>
   );
 }
