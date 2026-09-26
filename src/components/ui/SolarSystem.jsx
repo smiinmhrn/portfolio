@@ -14,6 +14,7 @@ import {
 } from "react-icons/si";
 
 import ScrollReveal from "@/components/scrollAnimation/ScrollReveal";
+import SollarBackground from "@/components/background/SollarBackground";
 
 const skills = [
   {
@@ -128,43 +129,52 @@ export default function SolarSystem() {
   );
 
   return (
-    <section className="solar-section">
-      <ScrollReveal delay={0.25}>
-        <div className="solar-content">
-          <div className="solar-system">
-            {/* Orbit rings */}
+    <SollarBackground>
+      <section className="solar-section">
+        <ScrollReveal delay={0.25}>
+          <div className="solar-content">
+            <h2
+              className="solar-title kalam-text text-5xl"
+              style={{
+                textShadow: "3px 3px 0px #D06167",
+              }}
+            >
+              Here are my skills.
+            </h2>
+            <div className="solar-system">
+              {/* Orbit rings */}
 
-            <div className="orbit orbit-1" />
-            <div className="orbit orbit-2" />
-            <div className="orbit orbit-3" />
-            <div className="orbit orbit-4" />
+              <div className="orbit orbit-1" />
+              <div className="orbit orbit-2" />
+              <div className="orbit orbit-3" />
+              <div className="orbit orbit-4" />
 
-            {/* Center */}
+              {/* Center */}
 
-            <div className="solar-center">
-              <div className="center-glow" />
+              <div className="solar-center">
+                <div className="center-glow" />
 
-              <div className="center-content">
-                <span>&lt;/&gt;</span>
+                <div className="center-content">
+                  <span>&lt;/&gt;</span>
+                </div>
               </div>
+
+              {/* Skills */}
+
+              {groupedSkills.map((orbitSkills) =>
+                orbitSkills.map((skill, index) => (
+                  <Skill
+                    key={skill.name}
+                    skill={skill}
+                    index={index}
+                    total={orbitSkills.length}
+                  />
+                )),
+              )}
             </div>
-
-            {/* Skills */}
-
-            {groupedSkills.map((orbitSkills) =>
-              orbitSkills.map((skill, index) => (
-                <Skill
-                  key={skill.name}
-                  skill={skill}
-                  index={index}
-                  total={orbitSkills.length}
-                />
-              )),
-            )}
           </div>
-        </div>
 
-        <style>{`
+          <style>{`
         .solar-section {
           width: 100%;
           padding: 100px 20px;
@@ -445,7 +455,8 @@ export default function SolarSystem() {
           }
         }
       `}</style>
-      </ScrollReveal>
-    </section>
+        </ScrollReveal>
+      </section>
+    </SollarBackground>
   );
 }
