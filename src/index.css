@@ -9,6 +9,17 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background: #faf8f2;
+}
+
+@font-face {
+  font-family: "Kalam";
+  src: url("./assets/fonts/Kalam_Complete/Fonts/TTF/Kalam-Variable.ttf")
+    format("truetype");
+  font-weight: 100 900;
+}
+.kalam-text {
+  font-family: "Kalam", cursive;
 }
 
 @theme inline {

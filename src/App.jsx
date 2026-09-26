@@ -1,9 +1,10 @@
-import Intro from "@/components/intro/Intro";
+// import Intro from "@/components/intro/Intro";
+import Home from "@/components/home/Home";
 
 function App() {
   return (
     <>
-      <Intro />
+      <Home />
     </>
   );
 }
