@@ -56,12 +56,12 @@ export default function Hero({ isTransitioning, isInsideBrain }) {
       }`}
     >
       <AuraBackground>
-        <section className="h-screen grid grid-cols-[4fr_6fr]">
+        <section className="h-screen flex flex-col lg:grid lg:grid-cols-[4fr_6fr]">
           {/* TEXT */}
 
-          <div className="pt-20">
+          <div className="flex items-center lg:block mt-30 lg:mt-20">
             <p
-              className="text-5xl font-bold leading-tight m-18 kalam-text text-white"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight m-8 lg:m-18 kalam-text text-white text-center lg:text-left"
               style={{
                 textShadow: "3px 3px 0px #D06167",
               }}
@@ -83,11 +83,11 @@ export default function Hero({ isTransitioning, isInsideBrain }) {
 
           {/* BRAIN */}
 
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center mt-10 lg:mt-0 overflow-visible">
             <img
               src={brainImage}
               alt="Brain"
-              className={`transition-transform duration-1500 ease-in-out ${
+              className={`w-full sm:w-[80%] lg:w-auto transition-transform duration-1500 ease-in-out ${
                 isTransitioning ? "scale-[8]" : "scale-100"
               }`}
             />

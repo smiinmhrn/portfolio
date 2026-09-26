@@ -3,28 +3,38 @@ import lampCursor from "@/assets/lamp.png";
 
 export default function BrainSection({ isVisible }) {
   const [mousePosition, setMousePosition] = useState({
-    x: 0,
-    y: 0,
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
   });
 
   const [lampOn, setLampOn] = useState(false);
 
-  // Cursor
+  const isTouchDevice =
+    "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+  // ─────────────────────────────────────────
+  // Desktop cursor
+  // ─────────────────────────────────────────
+
   useEffect(() => {
-    if (isVisible) {
-      document.body.style.cursor = `url("${lampCursor}") 16 16, auto`;
-    } else {
+    if (!isVisible || isTouchDevice) {
       document.body.style.cursor = "default";
+      return;
     }
+
+    document.body.style.cursor = `url("${lampCursor}") 16 16, auto`;
 
     return () => {
       document.body.style.cursor = "default";
     };
-  }, [isVisible]);
+  }, [isVisible, isTouchDevice]);
 
+  // ─────────────────────────────────────────
   // Mouse position
+  // ─────────────────────────────────────────
+
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || isTouchDevice) return;
 
     const handleMouseMove = (e) => {
       setMousePosition({
@@ -38,9 +48,46 @@ export default function BrainSection({ isVisible }) {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [isVisible]);
+  }, [isVisible, isTouchDevice]);
 
+  // ─────────────────────────────────────────
+  // Touch position
+  // ─────────────────────────────────────────
+
+  useEffect(() => {
+    if (!isVisible || !isTouchDevice) return;
+
+    const handleTouchStart = (e) => {
+      const touch = e.touches[0];
+
+      setMousePosition({
+        x: touch.clientX,
+        y: touch.clientY,
+      });
+    };
+
+    const handleTouchMove = (e) => {
+      const touch = e.touches[0];
+
+      setMousePosition({
+        x: touch.clientX,
+        y: touch.clientY,
+      });
+    };
+
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchmove", handleTouchMove);
+
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, [isVisible, isTouchDevice]);
+
+  // ─────────────────────────────────────────
   // Toggle lamp
+  // ─────────────────────────────────────────
+
   const handleClick = () => {
     setLampOn((prev) => !prev);
   };
@@ -50,27 +97,23 @@ export default function BrainSection({ isVisible }) {
   return (
     <section
       onClick={handleClick}
-      className={`fixed inset-0 z-30 overflow-hidden transition-opacity duration-[1500ms] ${
+      className={`fixed inset-0 z-30 overflow-hidden transition-opacity duration-1500${
         isVisible ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
-      {/* ================================= */}
-      {/* CONTENT UNDER THE DARKNESS */}
-      {/* ================================= */}
+      {/* CONTENT */}
 
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center bg-red-600">
         <div className="text-white text-center">
           <h1 className="text-5xl font-bold">Your hidden content</h1>
 
-          <p className="mt-4 text-white/70">
+          <p className="mt-4 text-black/70">
             This becomes visible when the lamp is turned on.
           </p>
         </div>
       </div>
 
-      {/* ================================= */}
       {/* DARK OVERLAY */}
-      {/* ================================= */}
 
       <div
         className="absolute inset-0 pointer-events-none"
@@ -92,9 +135,7 @@ export default function BrainSection({ isVisible }) {
         }}
       />
 
-      {/* ================================= */}
       {/* WARM YELLOW LIGHT */}
-      {/* ================================= */}
 
       {isLampOn && (
         <div
@@ -102,12 +143,9 @@ export default function BrainSection({ isVisible }) {
           style={{
             left: mousePosition.x - 80,
             top: mousePosition.y - 150,
-
             width: "600px",
             height: "600px",
-
             transform: "translate(-50%, -50%)",
-
             background: `
               radial-gradient(
                 circle,
@@ -118,17 +156,37 @@ export default function BrainSection({ isVisible }) {
                 transparent 100%
               )
             `,
-
             filter: "blur(20px)",
           }}
         />
       )}
 
-      {/* ================================= */}
-      {/* TEXT BEFORE CLICK */}
-      {/* ================================= */}
+      {/* MOBILE LAMP */}
 
-      {!isLampOn && (
+      {isVisible && isTouchDevice && (
+        <div
+          className="fixed pointer-events-none z-50"
+          style={{
+            left: mousePosition.x,
+            top: mousePosition.y,
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          {!lampOn && (
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 whitespace-nowrap text-white/70 text-sm leading-6 text-center">
+              <div className="kalam-text">It's a little bit dark here.</div>
+
+              <div className="kalam-text">Touch to turn on the lamp.</div>
+            </div>
+          )}
+
+          <img src={lampCursor} alt="" className="w-16 h-16 object-contain" />
+        </div>
+      )}
+
+      {/* DESKTOP TEXT */}
+
+      {!isLampOn && !isTouchDevice && (
         <div
           className="fixed pointer-events-none select-none text-white/70 text-sm leading-6"
           style={{

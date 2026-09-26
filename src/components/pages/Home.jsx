@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Hero from "@/components/home/Hero";
 import BrainSection from "@/components/home/BrainSection";
 
@@ -6,26 +6,57 @@ export default function Home() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isInsideBrain, setIsInsideBrain] = useState(false);
 
+  const touchStartY = useRef(0);
+
   // ─────────────────────────────────────────
-  // Scroll → transition
+  // Go inside brain
+  // ─────────────────────────────────────────
+
+  const goInsideBrain = () => {
+    if (isTransitioning || isInsideBrain) return;
+
+    setIsTransitioning(true);
+
+    setTimeout(() => {
+      setIsInsideBrain(true);
+      setIsTransitioning(false);
+    }, 1500);
+  };
+
+  // ─────────────────────────────────────────
+  // Scroll + Touch
   // ─────────────────────────────────────────
 
   useEffect(() => {
     const handleWheel = (event) => {
-      if (event.deltaY > 0 && !isTransitioning && !isInsideBrain) {
-        setIsTransitioning(true);
+      if (event.deltaY > 0) {
+        goInsideBrain();
+      }
+    };
 
-        setTimeout(() => {
-          setIsInsideBrain(true);
-          setIsTransitioning(false);
-        }, 1500);
+    const handleTouchStart = (event) => {
+      touchStartY.current = event.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (event) => {
+      const touchEndY = event.changedTouches[0].clientY;
+
+      const distance = touchStartY.current - touchEndY;
+
+      // Swipe up
+      if (distance > 50) {
+        goInsideBrain();
       }
     };
 
     window.addEventListener("wheel", handleWheel);
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchend", handleTouchEnd);
 
     return () => {
       window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
     };
   }, [isTransitioning, isInsideBrain]);
 
