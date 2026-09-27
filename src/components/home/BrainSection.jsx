@@ -89,8 +89,6 @@ export default function BrainSection({ isVisible, children }) {
   // ─────────────────────────────────────────
 
   const handleClick = (e) => {
-    // اگر روی یک عنصر تعاملی کلیک شده،
-    // چراغ نباید روشن/خاموش شود.
     if (
       e.target.closest("button, a, input, textarea, select, [role='button']")
     ) {

@@ -48,8 +48,14 @@ export default function BrainWarning({ onWarningChange }) {
       <section
         ref={sectionRef}
         className={`
-          relative h-dvh w-full overflow-hidden
-          flex items-center justify-center
+          relative
+          w-full
+          overflow-hidden
+          flex
+          items-center
+          justify-center
+          py-32
+          md:py-40
           ${isLeaving ? "page-exit" : ""}
         `}
       >
@@ -57,23 +63,12 @@ export default function BrainWarning({ onWarningChange }) {
           className={`
             relative
             w-full
-            h-full
             flex
             items-center
             justify-center
             ${isActive ? "brain-shake" : ""}
           `}
         >
-          {/* DARK */}
-          <div
-            className={`
-              absolute inset-0
-              bg-black/10
-              transition-opacity duration-500
-              ${isActive ? "opacity-100" : "opacity-0"}
-            `}
-          />
-
           {/* WARNING */}
           <div
             className={`
