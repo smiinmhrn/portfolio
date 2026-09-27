@@ -22,6 +22,29 @@ body {
   font-family: "Kalam", cursive;
 }
 
+.page-exit {
+  animation: escapeFromBrain 0.8s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+
+@keyframes escapeFromBrain {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  45% {
+    transform: scale(1.15);
+    filter: blur(2px);
+  }
+
+  100% {
+    transform: scale(0.05);
+    opacity: 0;
+    filter: blur(25px);
+  }
+}
+
 @keyframes brainShake {
   0% {
     transform: translate(0, 0) rotate(0deg);

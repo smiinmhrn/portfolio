@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { PopButtonDemo } from "./PopButtonDemo";
 
 export default function BrainWarning({ onWarningChange }) {
   const sectionRef = useRef(null);
+
   const [isActive, setIsActive] = useState(false);
+  const [isLeaving, setIsLeaving] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -30,61 +35,81 @@ export default function BrainWarning({ onWarningChange }) {
     };
   }, [onWarningChange]);
 
+  const handleExit = () => {
+    setIsLeaving(true);
+
+    setTimeout(() => {
+      navigate("/contacts");
+    }, 800);
+  };
+
   return (
-    <section
-      ref={sectionRef}
-      className="relative h-dvh w-full overflow-hidden flex items-center justify-center"
-    >
-      <div
+    <>
+      <section
+        ref={sectionRef}
         className={`
-          relative
-          w-full
-          h-full
-          flex
-          items-center
-          justify-center
-          ${isActive ? "brain-shake" : ""}
+          relative h-dvh w-full overflow-hidden
+          flex items-center justify-center
+          ${isLeaving ? "page-exit" : ""}
         `}
       >
-        {/* DARK */}
-        <div
-          className={`
-            absolute inset-0
-            bg-black/10
-            transition-opacity duration-500
-            ${isActive ? "opacity-100" : "opacity-0"}
-          `}
-        />
-
-        {/* WARNING */}
         <div
           className={`
             relative
-            z-10
-            text-center
-            select-none
-            transition-all
-            duration-700
-            ${isActive ? "opacity-100 scale-100" : "opacity-0 scale-90"}
-            kalam-text
+            w-full
+            h-full
+            flex
+            items-center
+            justify-center
+            ${isActive ? "brain-shake" : ""}
           `}
         >
-          <div className="text-white text-xs md:text-sm tracking-[0.6em] mb-6">
-            ⚠ SYSTEM WARNING
-          </div>
+          {/* DARK */}
+          <div
+            className={`
+              absolute inset-0
+              bg-black/10
+              transition-opacity duration-500
+              ${isActive ? "opacity-100" : "opacity-0"}
+            `}
+          />
 
-          <h1 className="text-white font-bold text-4xl md:text-7xl tracking-tight">
-            YOU&apos;RE NOT SUPPOSED
-          </h1>
+          {/* WARNING */}
+          <div
+            className={`
+              relative
+              z-10
+              text-center
+              select-none
+              transition-all
+              duration-700
+              ${isActive ? "opacity-100 scale-100" : "opacity-0 scale-90"}
+              kalam-text
+            `}
+          >
+            <div className="text-white text-xs md:text-sm tracking-[0.6em] mb-6">
+              ⚠ SYSTEM WARNING
+            </div>
 
-          <h1 className="text-white font-bold text-4xl md:text-7xl tracking-tight">
-            TO BE HERE
-          </h1>
-          <div className="mt-16">
-            <PopButtonDemo />
+            <h1 className="text-white font-bold text-4xl md:text-7xl tracking-tight">
+              YOU&apos;RE NOT SUPPOSED
+            </h1>
+
+            <h1 className="text-white font-bold text-4xl md:text-7xl tracking-tight">
+              TO BE HERE
+            </h1>
+
+            <div className="mt-16">
+              <PopButtonDemo onClick={handleExit} />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* TRANSITION */}
+      {isLeaving && (
+        <div className="fixed inset-0 z-9999 pointer-events-none page-transition" />
+      )}
+    </>
   );
 }

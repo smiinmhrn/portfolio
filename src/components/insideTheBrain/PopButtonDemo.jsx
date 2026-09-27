@@ -1,5 +1,5 @@
 import { PopButton } from "@/components/ui/pop-button";
 
-export function PopButtonDemo() {
-  return <PopButton>GET OUT HERE</PopButton>;
+export function PopButtonDemo({ onClick }) {
+  return <PopButton onClick={onClick}>GET OUT HERE</PopButton>;
 }

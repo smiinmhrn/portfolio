@@ -88,7 +88,15 @@ export default function BrainSection({ isVisible, children }) {
   // Toggle lamp
   // ─────────────────────────────────────────
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    // اگر روی یک عنصر تعاملی کلیک شده،
+    // چراغ نباید روشن/خاموش شود.
+    if (
+      e.target.closest("button, a, input, textarea, select, [role='button']")
+    ) {
+      return;
+    }
+
     setLampOn((prev) => !prev);
   };
 
@@ -110,17 +118,17 @@ export default function BrainSection({ isVisible, children }) {
         style={{
           background: isLampOn
             ? `
-        radial-gradient(
-          circle 500px
-          at ${mousePosition.x - 80}px ${mousePosition.y - 150}px,
-          transparent 0%,
-          transparent 30%,
-          rgba(0,0,0,0.28) 45%,
-          rgba(0,0,0,0.63) 65%,
-          rgba(0,0,0,0.84) 82%,
-          rgba(0,0,0,0.89) 100%
-        )
-      `
+              radial-gradient(
+                circle 500px
+                at ${mousePosition.x - 80}px ${mousePosition.y - 150}px,
+                transparent 0%,
+                transparent 30%,
+                rgba(0,0,0,0.28) 45%,
+                rgba(0,0,0,0.63) 65%,
+                rgba(0,0,0,0.84) 82%,
+                rgba(0,0,0,0.89) 100%
+              )
+            `
             : "#000",
         }}
       />
@@ -136,15 +144,15 @@ export default function BrainSection({ isVisible, children }) {
             height: "600px",
             transform: "translate(-50%, -50%)",
             background: `
-            radial-gradient(
-              circle,
-              rgba(255, 210, 70, 0.25) 0%,
-              rgba(255, 190, 40, 0.18) 25%,
-              rgba(255, 170, 20, 0.09) 50%,
-              rgba(255, 150, 0, 0.035) 70%,
-              transparent 100%
-            )
-          `,
+              radial-gradient(
+                circle,
+                rgba(255, 210, 70, 0.25) 0%,
+                rgba(255, 190, 40, 0.18) 25%,
+                rgba(255, 170, 20, 0.09) 50%,
+                rgba(255, 150, 0, 0.035) 70%,
+                transparent 100%
+              )
+            `,
             filter: "blur(20px)",
           }}
         />
