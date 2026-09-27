@@ -1,4 +1,4 @@
-# Samin's Portfolio 🧠
+# Samin's Portfolio 
 
 > I'm a Front-End Developer. Wanna explore my brain?
 
