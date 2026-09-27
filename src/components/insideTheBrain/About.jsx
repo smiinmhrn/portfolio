@@ -21,7 +21,7 @@ export default function About() {
 
       <ScrollReveal delay={0.25}>
         <div className="w-full max-w-5xl px-0 sm:px-5 lg:px-10">
-          <p className="text-lg sm:text-2xl md:text-3xl leading-relaxed text-center sm:text-left">
+          <p className="text-lg sm:text-2xl md:text-3xl leading-relaxed text-center">
             I’m someone who really enjoys making things — whether it’s drawing,
             playing an instrument, or building something with code. I love
             taking an idea in my head and slowly turning it into something real.
