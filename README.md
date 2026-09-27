@@ -1,19 +1,25 @@
-# React + Vite
+# Samin's Portfolio 🧠
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> I'm a Front-End Developer. Wanna explore my brain?
 
-Currently, two official plugins are available:
+Welcome to my interactive portfolio!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This website is designed around a brain-inspired concept, where you can explore my skills, projects, and a little bit of my personality through interactive animations and creative UI.
 
-## React Compiler
+##  Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+-  Interactive brain-inspired experience
+-  Creative and custom UI
+-  Smooth animations and transitions
+-  Responsive design
+-  Skills showcase
+-  Projects showcase
+-  Contact & social links
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+##  Built With
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- JavaScript
+- Tailwind CSS
+- React Icons
+- Vite
