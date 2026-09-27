@@ -71,16 +71,13 @@ export default function BrainWarning({ onWarningChange }) {
         >
           {/* WARNING */}
           <div
-            className={`
+            className="
               relative
               z-10
               text-center
               select-none
-              transition-all
-              duration-700
-              ${isActive ? "opacity-100 scale-100" : "opacity-0 scale-90"}
               kalam-text
-            `}
+            "
           >
             <div className="text-white text-xs md:text-sm tracking-[0.6em] mb-6">
               ⚠ SYSTEM WARNING
