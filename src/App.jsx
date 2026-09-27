@@ -5,8 +5,8 @@ import InsideTheBrain from "./components/insideTheBrain/InsideTheBrain";
 function App() {
   return (
     <>
-      <InsideTheBrain />
-      {/* <Home /> */}
+      {/* <InsideTheBrain /> */}
+      <Home />
     </>
   );
 }

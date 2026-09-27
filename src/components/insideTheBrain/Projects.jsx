@@ -124,7 +124,7 @@ export default function Projects() {
                   hover:border-[#D06167]/70
                   hover:shadow-[0_35px_80px_rgba(0,0,0,0.55),0_0_50px_rgba(208,97,103,0.18)]
                   max-sm:rounded-[20px]
-                  max-sm:p-[18px]
+                 max-sm:p-4.5
                 "
               >
                 {/* Number */}
@@ -133,7 +133,7 @@ export default function Projects() {
                     pointer-events-none
                     absolute
                     right-5
-                    top-[-25px]
+                    -top-6.25
                     z-3
                     font-['Kalam']
                     text-[85px]
@@ -145,7 +145,7 @@ export default function Projects() {
                     group-hover:-translate-y-2
                     group-hover:opacity-80
                     max-sm:right-2.5
-                    max-sm:top-[-20px]
+                    max-sm:-top-5
                     max-sm:text-[65px]
                   "
                   style={{
@@ -159,7 +159,7 @@ export default function Projects() {
                 <div
                   className="
                     relative
-                    aspect-[16/10]
+                    aspect-16/10
                     w-full
                     overflow-hidden
                     rounded-[18px]
