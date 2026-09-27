@@ -3,14 +3,14 @@ import sparkle from "@/assets/spotlight-23.png";
 
 export default function About() {
   return (
-    <div className="kalam-text flex flex-col justify-center items-center min-h-screen">
+    <div className="kalam-text flex flex-col justify-center items-center min-h-screen px-5 py-10">
       <ScrollReveal>
-        <img src={sparkle} alt="sparkle" className="w-75" />
+        <img src={sparkle} alt="sparkle" className="w-40 sm:w-60 md:w-75" />
       </ScrollReveal>
 
       <ScrollReveal delay={0.15}>
         <h1
-          className="font-bold text-5xl text-center mb-20 text-white"
+          className="font-bold text-3xl sm:text-4xl md:text-5xl text-center mb-10 sm:mb-14 md:mb-20 text-white"
           style={{
             textShadow: "3px 3px 0px #D06167",
           }}
@@ -20,8 +20,8 @@ export default function About() {
       </ScrollReveal>
 
       <ScrollReveal delay={0.25}>
-        <div className="px-60">
-          <p className="text-3xl">
+        <div className="w-full max-w-5xl px-0 sm:px-5 lg:px-10">
+          <p className="text-lg sm:text-2xl md:text-3xl leading-relaxed text-center sm:text-left">
             I’m someone who really enjoys making things — whether it’s drawing,
             playing an instrument, or building something with code. I love
             taking an idea in my head and slowly turning it into something real.
@@ -37,7 +37,7 @@ export default function About() {
             earned my Bachelor's degree. When I’m not coding, you’ll probably
             find me drawing, playing music, or watching a movie.{" "}
             <span
-              className="text-white text-4xl"
+              className="text-white text-2xl sm:text-3xl md:text-4xl"
               style={{
                 textShadow: "3px 3px 0px #D06167",
               }}
@@ -46,7 +46,6 @@ export default function About() {
             </span>
           </p>
         </div>
-        
       </ScrollReveal>
     </div>
   );

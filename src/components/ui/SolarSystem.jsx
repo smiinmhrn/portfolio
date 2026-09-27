@@ -133,328 +133,411 @@ export default function SolarSystem() {
       <section className="solar-section">
         <ScrollReveal delay={0.25}>
           <div className="solar-content">
+            {/* Title */}
             <h2
-              className="solar-title kalam-text text-5xl"
+              className="solar-title kalam-text text-3xl sm:text-4xl md:text-5xl text-center"
               style={{
                 textShadow: "3px 3px 0px #D06167",
               }}
             >
               Here are my skills.
             </h2>
-            <div className="solar-system">
-              {/* Orbit rings */}
 
-              <div className="orbit orbit-1" />
-              <div className="orbit orbit-2" />
-              <div className="orbit orbit-3" />
-              <div className="orbit orbit-4" />
+            {/* Solar System */}
+            <div className="solar-wrapper">
+              <div className="solar-system">
+                {/* Orbit rings */}
+                <div className="orbit orbit-1" />
+                <div className="orbit orbit-2" />
+                <div className="orbit orbit-3" />
+                <div className="orbit orbit-4" />
 
-              {/* Center */}
+                {/* Center */}
+                <div className="solar-center">
+                  <div className="center-glow" />
 
-              <div className="solar-center">
-                <div className="center-glow" />
-
-                <div className="center-content">
-                  <span>&lt;/&gt;</span>
+                  <div className="center-content">
+                    <span>&lt;/&gt;</span>
+                  </div>
                 </div>
+
+                {/* Skills */}
+                {groupedSkills.map((orbitSkills) =>
+                  orbitSkills.map((skill, index) => (
+                    <Skill
+                      key={skill.name}
+                      skill={skill}
+                      index={index}
+                      total={orbitSkills.length}
+                    />
+                  )),
+                )}
               </div>
-
-              {/* Skills */}
-
-              {groupedSkills.map((orbitSkills) =>
-                orbitSkills.map((skill, index) => (
-                  <Skill
-                    key={skill.name}
-                    skill={skill}
-                    index={index}
-                    total={orbitSkills.length}
-                  />
-                )),
-              )}
             </div>
           </div>
 
           <style>{`
-        .solar-section {
-          width: 100%;
-          padding: 100px 20px;
-          overflow: hidden;
-          color: white;
-        }
+            .solar-section {
+              width: 100%;
+              padding: 100px 20px;
+              overflow: hidden;
+              color: white;
+            }
 
-        .solar-content {
-          max-width: 1250px;
-          margin: 0 auto;
-        }
+            .solar-content {
+              width: 100%;
+              max-width: 1250px;
+              margin: 0 auto;
+            }
 
-        .solar-heading {
-          text-align: center;
-          max-width: 600px;
-          margin: 0 auto 60px;
-        }
+            /* -------------------------
+               TITLE
+            ------------------------- */
 
-        .solar-heading span {
-          font-size: 13px;
-          letter-spacing: 4px;
-          color: #888;
-        }
+            .solar-title {
+              margin: 0 0 70px;
+              text-align: center;
+            }
 
-        .solar-heading h2 {
-          margin: 15px 0;
-          font-size: clamp(35px, 5vw, 60px);
-          line-height: 1;
-          font-weight: 400;
-        }
+            /* -------------------------
+               SOLAR WRAPPER
+            ------------------------- */
 
-        .solar-heading h2 strong {
-          font-weight: 700;
-        }
+            .solar-wrapper {
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              overflow: visible;
+            }
 
-        .solar-heading p {
-          color: #777;
-          line-height: 1.8;
-          font-size: 15px;
-        }
+            /* -------------------------
+               SOLAR SYSTEM
+            ------------------------- */
 
-        .solar-system {
-          position: relative;
-          width: 760px;
-          height: 760px;
-          margin: 0 auto;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
+            .solar-system {
+              position: relative;
+              width: 760px;
+              height: 760px;
 
-        .orbit {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        border: 1px solid white;
-        border-radius: 50%;
-        pointer-events: none;
-        }
+              flex-shrink: 0;
 
-        .orbit-1 {
-          width: 300px;
-          height: 300px;
-        }
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
 
-        .orbit-2 {
-          width: 440px;
-          height: 440px;
-        }
+            /* -------------------------
+               ORBITS
+            ------------------------- */
 
-        .orbit-3 {
-          width: 580px;
-          height: 580px;
-        }
+            .orbit {
+              position: absolute;
+              left: 50%;
+              top: 50%;
 
-        .orbit-4 {
-          width: 720px;
-          height: 720px;
-        }
+              transform: translate(-50%, -50%);
 
-        .solar-center {
-          position: absolute;
-          width: 125px;
-          height: 125px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: radial-gradient(
-            circle,
-            #ffffff 0%,
-            #dddddd 20%,
-            #555 55%,
-            #111 75%
-          );
+              border: 1px solid white;
+              border-radius: 50%;
 
-          box-shadow:
-            0 0 35px rgba(255,255,255,.15),
-            0 0 100px rgba(255,255,255,.08);
+              pointer-events: none;
+            }
 
-          z-index: 5;
-        }
+            .orbit-1 {
+              width: 300px;
+              height: 300px;
+            }
 
-        .center-glow {
-          position: absolute;
-          width: 180px;
-          height: 180px;
-          border-radius: 50%;
-          background: rgba(255,255,255,.04);
-          filter: blur(20px);
-        }
+            .orbit-2 {
+              width: 440px;
+              height: 440px;
+            }
 
-        .center-content {
-          position: relative;
-          width: 85px;
-          height: 85px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: #080808;
-          border: 1px solid rgba(255,255,255,.2);
-          font-size: 30px;
-          color: white;
-        }
+            .orbit-3 {
+              width: 580px;
+              height: 580px;
+            }
 
-        .skill {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          width: 0;
-          height: 0;
+            .orbit-4 {
+              width: 720px;
+              height: 720px;
+            }
 
-          transform:
-            rotate(var(--angle))
-            translateX(var(--radius));
+            /* -------------------------
+               CENTER
+            ------------------------- */
 
-          animation: orbitRotate 20s linear infinite;
-        }
+            .solar-center {
+              position: absolute;
 
-        .skill-counter-rotate {
-          position: relative;
-          width: 58px;
-          height: 58px;
+              width: 125px;
+              height: 125px;
 
-          transform: translate(-50%, -50%);
+              border-radius: 50%;
 
-          animation: counterRotate 20s linear infinite;
-        }
+              display: flex;
+              align-items: center;
+              justify-content: center;
 
-        .skill-icon {
-          width: 58px;
-          height: 58px;
+              background: radial-gradient(
+                circle,
+                #ffffff 0%,
+                #dddddd 20%,
+                #555 55%,
+                #111 75%
+              );
 
-          display: flex;
-          align-items: center;
-          justify-content: center;
+              box-shadow:
+                0 0 35px rgba(255,255,255,.15),
+                0 0 100px rgba(255,255,255,.08);
 
-          border-radius: 50%;
+              z-index: 5;
+            }
 
-          color: var(--skill-color);
+            .center-glow {
+              position: absolute;
 
-          background: rgba(15,15,15,.95);
+              width: 180px;
+              height: 180px;
 
-          border: 1px solid rgba(255,255,255,.12);
+              border-radius: 50%;
 
-          box-shadow:
-            0 0 20px color-mix(
-              in srgb,
-              var(--skill-color) 20%,
-              transparent
-            );
+              background: rgba(255,255,255,.04);
 
-          cursor: pointer;
+              filter: blur(20px);
+            }
 
-          transition:
-            transform .3s ease,
-            border-color .3s ease,
-            box-shadow .3s ease;
-        }
+            .center-content {
+              position: relative;
 
-        .skill-icon:hover {
-          transform: scale(1.25);
+              width: 85px;
+              height: 85px;
 
-          border-color: var(--skill-color);
+              border-radius: 50%;
 
-          box-shadow:
-            0 0 25px var(--skill-color),
-            0 0 60px color-mix(
-              in srgb,
-              var(--skill-color) 30%,
-              transparent
-            );
-        }
+              display: flex;
+              align-items: center;
+              justify-content: center;
 
-        .skill-tooltip {
-          position: absolute;
-          bottom: 70px;
-          left: 50%;
+              background: #080808;
 
-          transform: translateX(-50%);
+              border: 1px solid rgba(255,255,255,.2);
 
-          padding: 7px 12px;
+              font-size: 30px;
+              color: white;
+            }
 
-          border-radius: 7px;
+            /* -------------------------
+               SKILLS
+            ------------------------- */
 
-          background: #151515;
+            .skill {
+              position: absolute;
 
-          border: 1px solid rgba(255,255,255,.1);
+              left: 50%;
+              top: 50%;
 
-          font-size: 12px;
-          white-space: nowrap;
+              width: 0;
+              height: 0;
 
-          opacity: 0;
-          pointer-events: none;
+              transform:
+                rotate(var(--angle))
+                translateX(var(--radius));
 
-          transition: .25s ease;
-        }
+              animation: orbitRotate 20s linear infinite;
+            }
 
-        .skill-counter-rotate:hover .skill-tooltip {
-          opacity: 1;
-          bottom: 68px;
-        }
+            .skill-counter-rotate {
+              position: relative;
 
-        @keyframes orbitRotate {
-          from {
-            transform:
-              rotate(var(--angle))
-              translateX(var(--radius))
-              rotate(0deg);
-          }
+              width: 58px;
+              height: 58px;
 
-          to {
-            transform:
-              rotate(calc(var(--angle) + 360deg))
-              translateX(var(--radius))
-              rotate(360deg);
-          }
-        }
+              transform: translate(-50%, -50%);
 
-        @keyframes counterRotate {
-          from {
-            transform:
-              translate(-50%, -50%)
-              rotate(0deg);
-          }
+              animation: counterRotate 20s linear infinite;
+            }
 
-          to {
-            transform:
-              translate(-50%, -50%)
-              rotate(-360deg);
-          }
-        }
+            .skill-icon {
+              width: 58px;
+              height: 58px;
 
-        @media (max-width: 800px) {
-          .solar-system {
-            transform: scale(.75);
-            margin: -80px auto;
-          }
-        }
+              display: flex;
+              align-items: center;
+              justify-content: center;
 
-        @media (max-width: 550px) {
-          .solar-system {
-            transform: scale(.48);
-            margin: -180px auto;
-          }
+              border-radius: 50%;
 
-          .solar-section {
-            padding: 70px 10px;
-          }
-        }
+              color: var(--skill-color);
 
-        @media (prefers-reduced-motion: reduce) {
-          .skill,
-          .skill-counter-rotate {
-            animation: none;
-          }
-        }
-      `}</style>
+              background: rgba(15,15,15,.95);
+
+              border: 1px solid rgba(255,255,255,.12);
+
+              box-shadow:
+                0 0 20px color-mix(
+                  in srgb,
+                  var(--skill-color) 20%,
+                  transparent
+                );
+
+              cursor: pointer;
+
+              transition:
+                transform .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease;
+            }
+
+            .skill-icon:hover {
+              transform: scale(1.25);
+
+              border-color: var(--skill-color);
+
+              box-shadow:
+                0 0 25px var(--skill-color),
+                0 0 60px color-mix(
+                  in srgb,
+                  var(--skill-color) 30%,
+                  transparent
+                );
+            }
+
+            /* -------------------------
+               TOOLTIP
+            ------------------------- */
+
+            .skill-tooltip {
+              position: absolute;
+
+              bottom: 70px;
+              left: 50%;
+
+              transform: translateX(-50%);
+
+              padding: 7px 12px;
+
+              border-radius: 7px;
+
+              background: #151515;
+
+              border: 1px solid rgba(255,255,255,.1);
+
+              font-size: 12px;
+
+              white-space: nowrap;
+
+              opacity: 0;
+              pointer-events: none;
+
+              transition: .25s ease;
+            }
+
+            .skill-counter-rotate:hover .skill-tooltip {
+              opacity: 1;
+              bottom: 68px;
+            }
+
+            /* -------------------------
+               ANIMATION
+            ------------------------- */
+
+            @keyframes orbitRotate {
+              from {
+                transform:
+                  rotate(var(--angle))
+                  translateX(var(--radius))
+                  rotate(0deg);
+              }
+
+              to {
+                transform:
+                  rotate(calc(var(--angle) + 360deg))
+                  translateX(var(--radius))
+                  rotate(360deg);
+              }
+            }
+
+            @keyframes counterRotate {
+              from {
+                transform:
+                  translate(-50%, -50%)
+                  rotate(0deg);
+              }
+
+              to {
+                transform:
+                  translate(-50%, -50%)
+                  rotate(-360deg);
+              }
+            }
+
+            /* -------------------------
+               TABLET
+            ------------------------- */
+
+            @media (max-width: 800px) {
+              .solar-section {
+                padding: 80px 15px;
+              }
+
+              .solar-title {
+                margin-bottom: 50px;
+              }
+
+              .solar-system {
+                transform: scale(.75);
+              }
+            }
+
+            /* -------------------------
+               MOBILE
+            ------------------------- */
+
+            @media (max-width: 550px) {
+              .solar-section {
+                padding: 60px 10px;
+              }
+
+              .solar-title {
+                margin-bottom: 30px;
+              }
+
+              .solar-wrapper {
+                height: 365px;
+              }
+
+              .solar-system {
+                transform: scale(.48);
+              }
+            }
+
+            /* -------------------------
+               SMALL MOBILE
+            ------------------------- */
+
+            @media (max-width: 380px) {
+              .solar-wrapper {
+                height: 320px;
+              }
+
+              .solar-system {
+                transform: scale(.42);
+              }
+            }
+
+            /* -------------------------
+               REDUCED MOTION
+            ------------------------- */
+
+            @media (prefers-reduced-motion: reduce) {
+              .skill,
+              .skill-counter-rotate {
+                animation: none;
+              }
+            }
+          `}</style>
         </ScrollReveal>
       </section>
     </SollarBackground>

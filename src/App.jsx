@@ -1,12 +1,12 @@
 // import Intro from "@/components/intro/Intro";
 import Home from "@/components/pages/Home";
-import InsideTheBrain from "./components/insideTheBrain/InsideTheBrain";
+// import InsideTheBrain from "./components/insideTheBrain/InsideTheBrain";
 
 function App() {
   return (
     <>
-      <InsideTheBrain />
-      {/* <Home /> */}
+      {/* <InsideTheBrain /> */}
+      <Home />
     </>
   );
 }
