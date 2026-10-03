@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import brainImage from "@/assets/brain.png";
+import brainImage from "@/assets/main/brain.png";
 import AuraBackground from "@/components/background/AuraBackground";
 
 export default function Hero({ isTransitioning, isInsideBrain }) {
   const [text, setText] = useState("");
 
-  const firstText = "AND THIS IS MY ";
+  const firstText = "HI, THIS IS MY ";
   const brainText = "BRAIN !";
   const lastText = ". OH, YOU WANNA EXPLORE? SURE! JUST SCROLL.";
 

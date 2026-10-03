@@ -1,10 +1,9 @@
-import mypicture from "@/assets/samin.png";
-import parachute from "@/assets/parachute-40.png";
+import mypicture from "@/assets/main/samin.png";
+import parachute from "@/assets/main/parachute-40.png";
 
 export default function Hero() {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-2.5 px-5 py-10">
-      {/* معرفی + عکس */}
       <div className="flex flex-col items-center text-center order-1 lg:order-2">
         <h1
           className="kalam-text mb-10 lg:mb-20 text-3xl sm:text-4xl font-bold text-white"

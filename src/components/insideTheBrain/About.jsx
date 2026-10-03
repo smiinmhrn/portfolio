@@ -1,5 +1,5 @@
 import ScrollReveal from "@/components/scrollAnimation/ScrollReveal";
-import sparkle from "@/assets/spotlight-23.png";
+import sparkle from "@/assets/main/spotlight-23.png";
 
 export default function About() {
   return (

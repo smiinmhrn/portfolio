@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import lampCursor from "@/assets/lamp.png";
+import lampCursor from "@/assets/main/lamp.png";
 
 export default function BrainSection({ isVisible, children }) {
   const [mousePosition, setMousePosition] = useState({
