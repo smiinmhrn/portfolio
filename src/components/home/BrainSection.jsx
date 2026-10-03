@@ -9,7 +9,6 @@ export default function BrainSection({ isVisible, children }) {
 
   const [lampOn, setLampOn] = useState(false);
 
-  // آخرین موقعیت Touch
   const touchPositionRef = useRef({
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
@@ -97,13 +96,11 @@ export default function BrainSection({ isVisible, children }) {
 
       if (!touch) return;
 
-      // فقط آخرین موقعیت را ذخیره می‌کنیم
       touchPositionRef.current = {
         x: touch.clientX,
         y: touch.clientY,
       };
 
-      // حداکثر یک update در هر frame
       if (animationFrameRef.current === null) {
         animationFrameRef.current = requestAnimationFrame(updatePosition);
       }

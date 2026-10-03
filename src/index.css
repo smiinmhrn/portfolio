@@ -88,3 +88,13 @@ body {
     transform: translate(0, 0) rotate(0deg);
   }
 }
+
+@media (max-width: 550px) {
+  .skill {
+    animation-duration: 35s;
+  }
+
+  .skill-counter-rotate {
+    animation-duration: 35s;
+  }
+}

@@ -5,22 +5,18 @@ export default function ScrollReveal({ children, delay = 0 }) {
     <motion.div
       initial={{
         opacity: 0,
-        y: 100,
-        scale: 0.9,
-        filter: "blur(10px)",
+        y: 50,
       }}
       whileInView={{
         opacity: 1,
         y: 0,
-        scale: 1,
-        filter: "blur(0px)",
       }}
       viewport={{
-        once: false,
-        amount: 0.25,
+        once: true,
+        amount: 0.2,
       }}
       transition={{
-        duration: 1,
+        duration: 0.8,
         delay,
         ease: [0.22, 1, 0.36, 1],
       }}
