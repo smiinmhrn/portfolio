@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import lampCursor from "@/assets/main/lamp.png";
 
 export default function BrainSection({ isVisible, children }) {
@@ -8,6 +8,15 @@ export default function BrainSection({ isVisible, children }) {
   });
 
   const [lampOn, setLampOn] = useState(false);
+
+  // آخرین موقعیت Touch
+  const touchPositionRef = useRef({
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+  });
+
+  // requestAnimationFrame
+  const animationFrameRef = useRef(null);
 
   const isTouchDevice =
     "ontouchstart" in window || navigator.maxTouchPoints > 0;
@@ -57,30 +66,65 @@ export default function BrainSection({ isVisible, children }) {
   useEffect(() => {
     if (!isVisible || !isTouchDevice) return;
 
+    const updatePosition = () => {
+      const { x, y } = touchPositionRef.current;
+
+      setMousePosition({
+        x,
+        y,
+      });
+
+      animationFrameRef.current = null;
+    };
+
     const handleTouchStart = (e) => {
       const touch = e.touches[0];
 
-      setMousePosition({
+      if (!touch) return;
+
+      touchPositionRef.current = {
         x: touch.clientX,
         y: touch.clientY,
-      });
+      };
+
+      if (animationFrameRef.current === null) {
+        animationFrameRef.current = requestAnimationFrame(updatePosition);
+      }
     };
 
     const handleTouchMove = (e) => {
       const touch = e.touches[0];
 
-      setMousePosition({
+      if (!touch) return;
+
+      // فقط آخرین موقعیت را ذخیره می‌کنیم
+      touchPositionRef.current = {
         x: touch.clientX,
         y: touch.clientY,
-      });
+      };
+
+      // حداکثر یک update در هر frame
+      if (animationFrameRef.current === null) {
+        animationFrameRef.current = requestAnimationFrame(updatePosition);
+      }
     };
 
-    window.addEventListener("touchstart", handleTouchStart);
-    window.addEventListener("touchmove", handleTouchMove);
+    window.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+
+    window.addEventListener("touchmove", handleTouchMove, {
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
+
+      if (animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
     };
   }, [isVisible, isTouchDevice]);
 
@@ -164,6 +208,7 @@ export default function BrainSection({ isVisible, children }) {
             left: mousePosition.x,
             top: mousePosition.y,
             transform: "translate(-50%, -50%)",
+            willChange: "transform, left, top",
           }}
         >
           {!lampOn && (
@@ -174,7 +219,12 @@ export default function BrainSection({ isVisible, children }) {
             </div>
           )}
 
-          <img src={lampCursor} alt="" className="w-16 h-16 object-contain" />
+          <img
+            src={lampCursor}
+            alt=""
+            className="w-16 h-16 object-contain"
+            draggable="false"
+          />
         </div>
       )}
 
